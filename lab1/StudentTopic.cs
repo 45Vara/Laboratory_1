@@ -9,13 +9,13 @@ namespace lab1
     internal class StudentTopic
     {
         public string NameStudent { get; set; }
-        public string StusentsTopic { get; set; }
+        public string StudentsTopic { get; set; }
         public DateTime Date {  get; set; }
 
         public StudentTopic(string nameStudent, string stusentTopic, DateTime date)
         {
             NameStudent = nameStudent;
-            StusentTopic = stusentTopic;
+            StudentsTopic = stusentTopic;
             Date = date;
         }
     }
