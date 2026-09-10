@@ -13,17 +13,18 @@ namespace lab1
         {
             List<StudentTopic> topics = new List<StudentTopic>();
 
-            Console.WriteLine("Введите темы работ.");
-            Console.WriteLine("Формат: \"Имя\" \"Тема\" ГГГГ.ММ.ДД");
+            StreamReader reader = new StreamReader("topic.txt");
 
             while (true)
             {
-                string input = Console.ReadLine();
-
-                if (input == "")
+                if (reader.EndOfStream == true)
+                {
                     break;
+                }
 
-                string[] parts = input.Split('"');
+                string line = reader.ReadLine();
+
+                string[] parts = line.Split('"');
 
                 if (parts.Length >= 5)
                 {
@@ -40,10 +41,45 @@ namespace lab1
                 }
                 else
                 {
-                    Console.WriteLine("Ошибка! Неправильный формат.");
+                    Console.WriteLine("Неправильный формат.");
                 }
             }
-            Console.WriteLine("Сохранено " + topics.Count + " записей в файл ");
         }
+        
+        static StudentTopic Parse(string line){
+
+            string[] parts = line.Split('"');
+
+            string name = parts[1];
+
+            string topic = parts[3];
+
+            string dateStr = parts[4].Trim();
+
+            DateTime date = DateTime.ParseExact(dateStr, "yyyy.MM.dd", null);
+
+            return new StudentTopic(name, topic, date);
+        }
+
+        static int F(List<int> numders)
+        {
+            int max = 0;
+            for (int i = 0;  i < numders.Count; i++)
+            {
+                int num = numders[i];
+                int num1 = numders[i+1];
+                int num2 = numders[i+2];
+
+                int sum = num + num1 + num2;
+
+                if(sum > max)
+                {
+                    max = sum;
+                }
+
+            }
+            return max;
+        }
+
     }
 }
