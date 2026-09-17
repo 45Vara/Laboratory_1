@@ -18,7 +18,8 @@ namespace lab1
             Load(topics, "group.txt", "group");
             Load(topics, "grade.txt", "grade");
 
-             Save(topics, "all_saved.txt");
+            Save(topics, "all_saved.txt");
+            Show(topics);
         }
 
         static StudentTopic Parse(string line, string type)
@@ -70,28 +71,18 @@ namespace lab1
         }
         static void Show(List<StudentTopic> topics)
         {
-            Console.WriteLine("Базовые темы:");
-            foreach (var t in topics)
-            {
-                Console.WriteLine($"  {t.NameStudent} - {t.StudentsTopic} ({t.Date:yyyy.MM.dd})");
-            }
-        }
+            Console.WriteLine("Все записи:");
 
-        static void ShowGroup(List<StudentTopicGroup> topics)
-        {
-            Console.WriteLine("Темы с группами:");
             foreach (var t in topics)
             {
-                Console.WriteLine($"  {t.NameStudent} - {t.StudentsTopic} ({t.Date:yyyy.MM.dd}) Группа: {t.Group}");
-            }
-        }
+                string line = $"  {t.NameStudent} - {t.StudentsTopic} ({t.Date:yyyy.MM.dd})";
 
-        static void ShowGrade(List<StudentTopicGrade> topics)
-        {
-            Console.WriteLine("Темы с оценками:");
-            foreach (var t in topics)
-            {
-                Console.WriteLine($"  {t.NameStudent} - {t.StudentsTopic} ({t.Date:yyyy.MM.dd}) Оценка: {t.Grade}");
+                if (t is StudentTopicGroup g)
+                    line += $" | Группа: {g.Group}";
+                else if (t is StudentTopicGrade gr)
+                    line += $" | Оценка: {gr.Grade}";
+
+                Console.WriteLine(line);
             }
         }
         static int F(List<int> numders)
@@ -112,15 +103,6 @@ namespace lab1
 
             }
             return max;
-        }
-        static void filter(List<StudentTopic> list, string query)
-        {
-            foreach(StudentTopic i in list)
-            {
-                if(i.NameStudent.Contains(query)){
-                    Console.WriteLine(i);
-                }
-            }
         }
     }
 }
