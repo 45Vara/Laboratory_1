@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace lab1
 {
-    internal class StudentTopic
+    public class StudentTopic
     {
         public string NameStudent { get; set; }
         public string StudentsTopic { get; set; }
         public DateTime Date {  get; set; }
 
-        public StudentTopic(string nameStudent, string stusentTopic, DateTime date)
+        public StudentTopic(string nameStudent, string studentsTopic, DateTime date)
         {
             NameStudent = nameStudent;
-            StudentsTopic = stusentTopic;
+            StudentsTopic = studentsTopic;
             Date = date;
         }
     }
