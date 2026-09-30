@@ -10,99 +10,137 @@ namespace lab1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static string basePath = @"C:\Users\STUDENT 2025\Desktop\Lab1";
+        private static string topicFile = basePath + @"\topic.txt";
+        private static string groupFile = basePath + @"\group.txt";
+        private static string gradeFile = basePath + @"\grade.txt";
+        private static string saveFile = basePath + @"\saved.txt";
+
+        static void Main()
         {
-            List<StudentTopic> topics = new List<StudentTopic>();
 
-            Load(topics, "topic.txt", "hello");
-            Load(topics, "group.txt", "group");
-            Load(topics, "grade.txt", "grade");
-
-            Save(topics, "all_saved.txt");
-            Show(topics);
-        }
-
-        static StudentTopic Parse(string line, string type)
-        {
-            string[] p = line.Split('"');
-            string name = p[1];
-            string topic = p[3];
-            DateTime date = DateTime.ParseExact(p[4].Trim(), "yyyy.MM.dd", null);
-
-            if (type == "group")
-                return new StudentTopicGroup(name, topic, date, p[5].Trim());
-            if (type == "grade")
-                return new StudentTopicGrade(name, topic, date, int.Parse(p[5].Trim()));
-            return new StudentTopic(name, topic, date);
-        }
-
-        static void Load(List<StudentTopic> list, string filePath, string type)
-        {
-            if (!File.Exists(filePath))
-                return;
-
-            StreamReader reader = new StreamReader(filePath);
-            while (!reader.EndOfStream)
+            try
             {
-                string line = reader.ReadLine();
-                if (line != "")
-                    list.Add(Parse(line, type));
-            }
-            reader.Close();
-        }
+                List<StudentTopic> topics = new List<StudentTopic>();
 
-        static void Save(List<StudentTopic> topics, string filePath)
-        {
-            StreamWriter writer = new StreamWriter(filePath);
-
-            foreach (var t in topics)
-            {
-                string line = t.NameStudent + "|" + t.StudentsTopic + "|" + t.Date.ToString("yyyy.MM.dd");
-
-                if (t is StudentTopicGroup g)
-                    line += "|" + g.Group;
-                else if (t is StudentTopicGrade gr)
-                    line += "|" + gr.Grade;
-
-                writer.WriteLine(line);
-            }
-
-            writer.Close();
-        }
-        static void Show(List<StudentTopic> topics)
-        {
-            Console.WriteLine("Все записи:");
-
-            foreach (var t in topics)
-            {
-                string line = $"  {t.NameStudent} - {t.StudentsTopic} ({t.Date:yyyy.MM.dd})";
-
-                if (t is StudentTopicGroup g)
-                    line += $" | Группа: {g.Group}";
-                else if (t is StudentTopicGrade gr)
-                    line += $" | Оценка: {gr.Grade}";
-
-                Console.WriteLine(line);
-            }
-        }
-        static int F(List<int> numders)
-        {
-            int max = 0;
-            for (int i = 0; i < numders.Count; i++)
-            {
-                int num = numders[i];
-                int num1 = numders[i + 1];
-                int num2 = numders[i + 2];
-
-                int sum = num + num1 + num2;
-
-                if (sum > max)
+                while (true)
                 {
-                    max = sum;
-                }
+                    ShowMenu(topics.Count);
+                    int choice = int.Parse(Console.ReadLine());
 
+                    if (choice == 1) LoadAll(topics);
+                    else if (choice == 2) SaveAll(topics);
+                    else if (choice == 3) ShowAll(topics);
+                    else if (choice == 4) AddNew(topics);
+                    else if (choice == 0) break;
+                    else Console.WriteLine("Неверный выбор");
+
+                    Console.ReadKey();
+                    Console.Clear();
+                }
             }
-            return max;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ShowStudent.ShowError(ex.Message));
+            }
+
+            Console.ReadKey();
+        }
+
+        static void ShowMenu(int count)
+        {
+            Console.WriteLine("Записей: " + count);
+            Console.WriteLine("1. Считать с файлов");
+            Console.WriteLine("2. Сохранить в файл");
+            Console.WriteLine("3. Показать все записи");
+            Console.WriteLine("4. Добавить новую строку");
+            Console.WriteLine("0. Выход");
+            Console.Write("Выберите: ");
+        }
+
+        static void LoadAll(List<StudentTopic> topics)
+        {
+            topics.Clear();
+
+            List<string> allErrors = new List<string>();
+
+            allErrors.AddRange(FileService.Load("base", topics, topicFile));
+            allErrors.AddRange(FileService.Load("group", topics, groupFile));
+            allErrors.AddRange(FileService.Load("grade", topics, gradeFile));
+
+            foreach (var error in allErrors)
+                Console.WriteLine(error);
+
+            Console.WriteLine(ShowStudent.ShowCount(topics.Count));
+        }
+
+        static void SaveAll(List<StudentTopic> topics)
+        {
+            FileService.Save(topics, saveFile);
+            Console.WriteLine("Сохранено в: " + saveFile);
+        }
+
+        static void ShowAll(List<StudentTopic> topics)
+        {
+            Console.WriteLine(ShowStudent.Show(topics));
+        }
+
+        static void AddNew(List<StudentTopic> topics)
+        {
+            Console.WriteLine("Выберите тип записи:");
+            Console.WriteLine("1. Обычная тема");
+            Console.WriteLine("2. С группой");
+            Console.WriteLine("3. С оценкой");
+            Console.Write("Выберите: ");
+
+            int typeChoice = int.Parse(Console.ReadLine());
+
+            if (typeChoice == 1) AddTopic(topics);
+            else if (typeChoice == 2) AddGroup(topics);
+            else if (typeChoice == 3) AddGrade(topics);
+            else Console.WriteLine("Неверный выбор");
+        }
+
+        static void AddTopic(List<StudentTopic> topics)
+        {
+            Console.WriteLine("Формат: \"Имя\" \"Тема\" ГГГГ.ММ.ДД");
+            Console.Write("Введите строку: ");
+            string line = Console.ReadLine();
+
+            AddLine(topics, line, "base", topicFile);
+        }
+
+        static void AddGroup(List<StudentTopic> topics)
+        {
+            Console.WriteLine("Формат: \"Имя\" \"Тема\" ГГГГ.ММ.ДД \"Группа\"");
+            Console.Write("Введите строку: ");
+            string line = Console.ReadLine();
+
+            AddLine(topics, line, "group", groupFile);
+        }
+
+        static void AddGrade(List<StudentTopic> topics)
+        {
+            Console.WriteLine("Формат: \"Имя\" \"Тема\" ГГГГ.ММ.ДД Оценка");
+            Console.Write("Введите строку: ");
+            string line = Console.ReadLine();
+
+            AddLine(topics, line, "grade", gradeFile);
+        }
+
+        static void AddLine(List<StudentTopic> topics, string line, string type, string filePath)
+        {
+            try
+            {
+                var topic = Parser.Parse(line, type);
+                topics.Add(topic);
+                FileService.Append(topic, filePath);
+                Console.WriteLine("Добавлено в " + filePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка: " + ex.Message);
+            }
         }
     }
 }
