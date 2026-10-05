@@ -87,7 +87,6 @@ C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\zh-Hant\Microsoft.
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\lab1.exe
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\lab1.pdb
-C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\lab1.exe.config
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\obj\Debug\net9.0\lab1_Test.csproj.AssemblyReference.cache
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\obj\Debug\net9.0\lab1_Test.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\obj\Debug\net9.0\lab1_Test.AssemblyInfoInputs.cache
@@ -100,3 +99,9 @@ C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\obj\Debug\net9.0\refint\lab1_Test.d
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\obj\Debug\net9.0\lab1_Test.pdb
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\obj\Debug\net9.0\lab1_Test.genruntimeconfig.cache
 C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\obj\Debug\net9.0\ref\lab1_Test.dll
+C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\.msCoverageSourceRootsMapping_lab1_Test
+C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\CoverletSourceRootsMapping_lab1_Test
+C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\lab1.deps.json
+C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\lab1.runtimeconfig.json
+C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\lab1.dll
+C:\Users\STUDENT 2025\Desktop\Lab1\lab1_Test\bin\Debug\net9.0\lab1.dll.config
