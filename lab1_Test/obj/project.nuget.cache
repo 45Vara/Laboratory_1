@@ -20,15 +20,5 @@
     "C:\\Users\\STUDENT 2025\\.nuget\\packages\\xunit.extensibility.execution\\2.9.2\\xunit.extensibility.execution.2.9.2.nupkg.sha512",
     "C:\\Users\\STUDENT 2025\\.nuget\\packages\\xunit.runner.visualstudio\\2.8.2\\xunit.runner.visualstudio.2.8.2.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Произошла ошибка при получении данных уязвимости пакета: Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json.",
-      "projectPath": "C:\\Users\\STUDENT 2025\\Desktop\\Lab1\\lab1_Test\\lab1_Test.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\STUDENT 2025\\Desktop\\Lab1\\lab1_Test\\lab1_Test.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }
