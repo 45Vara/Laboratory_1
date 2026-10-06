@@ -142,5 +142,38 @@ namespace lab1
                 Console.WriteLine("Ошибка: " + ex.Message);
             }
         }
+
+        static bool Date(List<StudentTopic> topics)
+        {
+            DateTime minDate = topics[0].Date;
+            DateTime maxDate = topics[0].Date;
+
+            foreach(var t in topics)
+            {
+                if (t.Date < minDate)
+                {
+                    minDate = t.Date;
+                }
+                if (t.Date > maxDate)
+                {
+                    maxDate = t.Date;
+                }
+            }
+
+            HashSet<DateTime> dates = new HashSet<DateTime>();
+            foreach (var t in topics)
+                dates.Add(t.Date.Date);
+
+            for (DateTime d = minDate.Date; d <= maxDate.Date; d = d.AddDays(1))
+            {
+                if (!dates.Contains(d))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }
