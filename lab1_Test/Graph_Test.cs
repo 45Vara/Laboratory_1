@@ -6,7 +6,7 @@ using Xunit;
 
 namespace lab1_Test
 {
-    public class StudentGraphTests
+    public class AdjacencyListTest
     {
         [Theory]
         [InlineData(null)]
