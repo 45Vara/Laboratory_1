@@ -142,39 +142,7 @@ namespace lab1
                 Console.WriteLine("Ошибка: " + ex.Message);
             }
         }
-        public static int Numb(List<int> numbs)
-        {
-            int firstNeg = -1;
-            for (int i = 0; i < numbs.Count; i++)
-            {
-                if (numbs[i] < 0)
-                {
-                    firstNeg = i;
-                    break;
-                }
-            }
-
-            int lastPos = -1;
-            for (int i = numbs.Count - 1; i >= 0; i--)
-            {
-                if (numbs[i] > 0)
-                {
-                    lastPos = i;
-                    break;
-                }
-            }
-
-            if (firstNeg == -1 || lastPos == -1 || firstNeg >= lastPos)
-                return 0;
-
-            int sum = 0;
-            for (int i = firstNeg + 1; i < lastPos; i++)
-            {
-                sum += numbs[i];
-            }
-
-            return sum;
-        }
+       
 
     }
 }
