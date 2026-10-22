@@ -13,39 +13,23 @@ namespace lab1_Test
 {
     public class FileServiceTests
     {
-        //первое отрицательное послденее положительно и найти сумму после минимально и после последнего положительного
-        //что если первые числа не отрицательные или он самый последни
-
         [Fact]
-        public void NegativeIsLastElement()
+        public void Save_WritesToFile()
         {
-            var numbs = new List<int> { 3, 5, 2, 4, 1, -2 };
-            int result = lab1.Program.Numb(numbs);
-            Assert.Equal(0, result);
-        }
+            string filePath = "test_save.txt";
+            List<StudentTopic> topics = new List<StudentTopic>
+            {
+                new StudentTopic("Иванов", "Алгоритмы", new DateTime(2026, 9, 3))
+            };
 
-        [Fact]
-        public void AllPositive()
-        {
-            var numbs = new List<int> { 1, 2, 3, 4, 5 };
-            int result = lab1.Program.Numb(numbs);
-            Assert.Equal(0, result);
-        }
+            FileService.Save(topics, filePath);
 
-        [Fact]
-        public void VeryLongListWithSum()
-        {
-            var numbs = new List<int> { -1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -100, 1 };
-            int result = lab1.Program.Numb(numbs);
-            Assert.Equal(-46, result);
-        }
+            Assert.True(File.Exists(filePath));
+            string content = File.ReadAllText(filePath);
+            Assert.Contains("Иванов", content);
+            Assert.Contains("Алгоритмы", content);
 
-        [Fact]
-        public void AllNegative()
-        {
-            var numbs = new List<int> { -1, -2, -3, -4, -5 };
-            int result = lab1.Program.Numb(numbs);
-            Assert.Equal(0, result);
+            File.Delete(filePath);
         }
     }
 }
