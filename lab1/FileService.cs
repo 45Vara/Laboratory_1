@@ -19,62 +19,69 @@ namespace lab1
                 return errors;
             }
 
-            StreamReader reader = new StreamReader(filePath);
-
-            while (!reader.EndOfStream)
+            using (StreamReader reader = new StreamReader(filePath))
             {
-                string line = reader.ReadLine();
-
-                if (line != "")
+                while (!reader.EndOfStream)
                 {
-                    try
+                    string line = reader.ReadLine();
+
+                    if (line != "")
                     {
-                        list.Add(Parser.Parse(line, type));
-                    }
-                    catch (Exception ex)
-                    {
-                        errors.Add("Ошибка в строке: " + line);
-                        errors.Add("   " + ex.Message);
+                        try
+                        {
+                            list.Add(Parser.Parse(line, type));
+                        }
+                        catch (Exception ex)
+                        {
+                            errors.Add("Ошибка в строке: " + line);
+                            errors.Add("   " + ex.Message);
+                        }
                     }
                 }
             }
 
-            reader.Close();
             return errors;
         }
 
         public static void Save(List<StudentTopic> topics, string filePath)
         {
-            StreamWriter writer = new StreamWriter(filePath);
-
-            foreach (var t in topics)
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
-                string line = "\"" + t.NameStudent + "\" \"" + t.StudentsTopic + "\" " + t.Date.ToString("yyyy.MM.dd");
+                foreach (var t in topics)
+                {
+                    string line = "\"" + t.NameStudent + "\" \"" + t.StudentsTopic + "\" " + t.Date.ToString("yyyy.MM.dd");
 
-                if (t is StudentTopicGroup g)
-                    line += " \"" + g.Group + "\"";
-                else if (t is StudentTopicGrade gr)
-                    line += " " + gr.Grade;
+                    if (t is StudentTopicGroup g)
+                    {
+                        line += " \"" + g.Group + "\"";
+                    }
+                    else if (t is StudentTopicGrade gr)
+                    {
+                        line += " " + gr.Grade;
+                    }
 
-                writer.WriteLine(line);
+                    writer.WriteLine(line);
+                }
             }
-
-            writer.Close();
         }
 
         public static void Append(StudentTopic topic, string filePath)
         {
-            StreamWriter writer = new StreamWriter(filePath, true);
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                string line = "\"" + topic.NameStudent + "\" \"" + topic.StudentsTopic + "\" " + topic.Date.ToString("yyyy.MM.dd");
 
-            string line = "\"" + topic.NameStudent + "\" \"" + topic.StudentsTopic + "\" " + topic.Date.ToString("yyyy.MM.dd");
+                if (topic is StudentTopicGroup g)
+                {
+                    line += " \"" + g.Group + "\"";
+                }
+                else if (topic is StudentTopicGrade gr)
+                {
+                    line += " " + gr.Grade;
+                }
 
-            if (topic is StudentTopicGroup g)
-                line += " \"" + g.Group + "\"";
-            else if (topic is StudentTopicGrade gr)
-                line += " " + gr.Grade;
-
-            writer.WriteLine(line);
-            writer.Close();
+                writer.WriteLine(line);
+            }
         }
     }
 }

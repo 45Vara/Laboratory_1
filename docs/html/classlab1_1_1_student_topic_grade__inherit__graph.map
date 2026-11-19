@@ -1,0 +1,5 @@
+<map id="lab1.StudentTopicGrade" name="lab1.StudentTopicGrade">
+<area shape="rect" id="Node000001" title="Класс темы с дополнительным полем оценки. Наследуется от StudentTopic." alt="" coords="5,80,166,107"/>
+<area shape="rect" id="Node000002" href="$classlab1_1_1_student_topic.html" title="Базовый класс, представляющий тему работы студента. Содержит информацию об авторе,..." alt="" coords="23,5,148,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,46,88,81,83,79,84,50"/>
+</map>

@@ -1,13 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab1
 {
+    /// <summary>
+    /// Статический класс для парсинга строк в объекты.
+    /// </summary>
     public static class Parser
     {
+        /// <summary>
+        /// Парсит строку и возвращает объект темы.
+        /// </summary>
+        /// <param name="line">Строка в формате "Имя" "Тема" ГГГГ.ММ.ДД.</param>
+        /// <param name="type">Тип объекта: "base", "group" или "grade".</param>
+        /// <returns>Объект типа <see cref="StudentTopic"/> (или его наследник).</returns>
+        /// <exception cref="ArgumentException">Выбрасывается, если строка пустая или имя/тема пустые.</exception>
+        /// <exception cref="FormatException">Выбрасывается, если формат строки или даты неверный.</exception>
         public static StudentTopic Parse(string line, string type)
         {
             if (string.IsNullOrWhiteSpace(line))

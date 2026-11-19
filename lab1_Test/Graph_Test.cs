@@ -13,7 +13,7 @@ namespace lab1_Test
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("A-->B\nC-->B\nE-->A\nDL-->C\nF-  ->C\nA-<fsf>F")]
-        public void AdjacencyList_CreatesCorrectly(string input)
+        public void AdjacencyList_CreatesCorrectly(string? input)
         {
             Dictionary<char, List<string[]>> answer = new Dictionary<char, List<string[]>>
             {

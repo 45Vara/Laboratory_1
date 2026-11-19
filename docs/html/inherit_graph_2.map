@@ -1,0 +1,7 @@
+<map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
+<area shape="rect" id="Node000000" href="$classlab1_1_1_student_topic.html" title="Базовый класс, представляющий тему работы студента. Содержит информацию об авторе,..." alt="" coords="5,31,131,57"/>
+<area shape="rect" id="Node000001" href="$classlab1_1_1_student_topic_grade.html" title="Класс темы с дополнительным полем оценки. Наследуется от StudentTopic." alt="" coords="179,5,339,32"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="145,31,181,29,176,30,146,36"/>
+<area shape="rect" id="Node000002" href="$classlab1_1_1_student_topic_group.html" title="Класс темы с дополнительным полем группы. Наследуется от StudentTopic." alt="" coords="179,56,339,83"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="146,52,181,58,176,59,146,57"/>
+</map>
