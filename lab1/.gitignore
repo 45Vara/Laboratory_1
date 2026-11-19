@@ -1,0 +1,12 @@
+.vs/
+bin/
+obj/
+Debug/
+Release/
+publish/
+docs/
+html/
+latex/
+TestResults/
+coveragereport/
+doxygen_log.txt
