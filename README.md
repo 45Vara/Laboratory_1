@@ -17,6 +17,8 @@
    ```bash
    dotnet run --project lab1/lab1.csproj
 - Для запуска тестов:
+   ```bash
    dotnet test -c Release
 - Сборка в Native AOT:
+   ```bash
    dotnet publish -r win-x64 -c Release
